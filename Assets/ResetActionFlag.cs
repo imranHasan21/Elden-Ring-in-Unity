@@ -15,7 +15,7 @@ public class ResetActionFlag : StateMachineBehaviour
         character.isPerformingAction = false;
 
         // USED FOR APPLY ROOT MOTION AFTER ACTION
-        //character.applyRootMotion = false;
+        character.applyRootMotion = false;
 
         character.canMove = true;
         character.canRotate = true;

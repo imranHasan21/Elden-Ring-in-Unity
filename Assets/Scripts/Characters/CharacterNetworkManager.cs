@@ -1,6 +1,5 @@
 using UnityEngine;
 using Unity.Netcode;
-using UnityEngine.TextCore.Text;
 
 public class CharacterNetworkManager : NetworkBehaviour
 {
@@ -56,7 +55,7 @@ public class CharacterNetworkManager : NetworkBehaviour
 
     private void PlayActionAnimationFromServer(string animationId, bool applyRootMotion)
     {
-        // character.applyRootMotion = applyRootMotion;
+        character.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(animationId, 0.2f);
     }
 }

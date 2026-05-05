@@ -972,7 +972,8 @@ MonoBehaviour:
   characterNetworkManager: {fileID: 0}
   isPerformingAction: 0
   isJumping: 0
-  isGrounded: 1
+  isGrounded: 0
+  applyRootMotion: 0
   canMove: 1
   canRotate: 1
   playerAnimatorManager: {fileID: 0}
@@ -1003,10 +1004,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7cc1824d87d974a8ce59af3655b825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLocomotionManager
+  gravityForce: -5.55
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  groundCheckSphereRadius: 0.3
+  groundCheckSphereRadius: 0.1
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -20
   fallStartYVelocity: -5

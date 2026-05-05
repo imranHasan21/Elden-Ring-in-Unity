@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class CharacterLocomotionManager : MonoBehaviour
 {
@@ -19,6 +18,11 @@ public class CharacterLocomotionManager : MonoBehaviour
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
+    }
+
+    protected virtual void Start()
+    {
+
     }
 
     protected virtual void Update()

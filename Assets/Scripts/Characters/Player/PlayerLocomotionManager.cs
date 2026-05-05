@@ -1,6 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerLocomotionManager : CharacterLocomotionManager
 {
@@ -30,6 +29,32 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     {
         base.Awake();
         player = GetComponent<PlayerManager>();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        SceneManager.activeSceneChanged += OnSceneChange;
+        this.enabled = false;
+    }
+
+    private void OnSceneChange(Scene oldScene, Scene newScene)
+    {
+        // IF WE ARE LOADING INTO OUR WORLD SCENE, ENABLE OUR PLAYER CONTROLS
+        if (newScene.buildIndex == WorldSavedGameManager.Instance.GetWorldSceneIndex())
+        {
+            this.enabled = true;
+        }
+        else
+        {
+            this.enabled = false;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // IF WE DESTROY THIS OBJECT UNSUBSCRIBE FROM THIS EVENT
+        SceneManager.activeSceneChanged -= OnSceneChange;
     }
 
     protected override void Update()
@@ -175,7 +200,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         // IF WE ARE MOVING WHEN ATTEMTING TO DODGE WE PERFORM A ROLL
         if (moveAmount > 0)
         {
-            // rollDirection = Vector3.zero;
+            rollDirection = Vector3.zero;
             rollDirection = PlayerCamera.Instance.transform.forward * PlayerInputManager.Instance.verticalInput;
             rollDirection += PlayerCamera.Instance.transform.right * PlayerInputManager.Instance.horizontalInput;
             rollDirection.y = 0;

@@ -34,7 +34,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         bool canMove = false,
         bool canRotate = false)
     {
-        character.animator.applyRootMotion = applyRootMotion;
+        character.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         //CAN BE USED TO STOP CHARACTER FROM ATTEMTING NEW ACTION
         // FOR EXAMPLE IF YOU GET DAMAGED AND BEGIN PERFORMING DAMAGE ANIMATION
