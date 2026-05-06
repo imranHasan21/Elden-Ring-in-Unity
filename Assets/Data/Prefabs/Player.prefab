@@ -749,6 +749,7 @@ GameObject:
   - component: {fileID: -3988410769334931601}
   - component: {fileID: 2800241847129808780}
   - component: {fileID: 1391786904926851944}
+  - component: {fileID: 9078211311020052078}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -1024,6 +1025,8 @@ MonoBehaviour:
   jumpStaminaCost: 20
   jumpHeight: 1
   jumpDirection: {x: 0, y: 0, z: 0}
+  jumpForwardSpeed: 4
+  freeFallSpeed: 2
 --- !u!114 &5421260381612285749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,6 +1175,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9078211311020052078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3882829044547392752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81fcc5db046676240a06a79ee695067f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEfectsManager
+  effectToTest: {fileID: 11400000, guid: f726888b04d8b93419b4991aa7abb23c, type: 2}
+  processEffect: 0
 --- !u!1 &4037032957806370819
 GameObject:
   m_ObjectHideFlags: 0
