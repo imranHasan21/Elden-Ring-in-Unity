@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
 
 public class PlayerUIHudManager : MonoBehaviour
 {
     [SerializeField] UI_StatBar staminaBar;
+    [SerializeField] UI_StatBar healthBar;
 
     public void SetNewStaminaValue(float oldValue, float newValue)
     {
@@ -13,5 +13,23 @@ public class PlayerUIHudManager : MonoBehaviour
     public void SetMaxStaminaValue(int maxStamina)
     {
         staminaBar.SetMaxStat(maxStamina);
+    }
+
+    public void SetNewHealthValue(float oldValue, float newValue)
+    {
+        healthBar.SetStat(Mathf.RoundToInt(newValue));
+    }
+
+    public void SetMaxHealthValue(int maxHealth)
+    {
+        healthBar.SetMaxStat(maxHealth);
+    }
+
+    public void RefreshHUD()
+    {
+        healthBar.gameObject.SetActive(false);
+        healthBar.gameObject.SetActive(true);
+        staminaBar.gameObject.SetActive(false);
+        staminaBar.gameObject.SetActive(true);
     }
 }

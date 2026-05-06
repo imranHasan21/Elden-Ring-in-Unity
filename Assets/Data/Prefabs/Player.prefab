@@ -1025,8 +1025,8 @@ MonoBehaviour:
   jumpStaminaCost: 20
   jumpHeight: 1
   jumpDirection: {x: 0, y: 0, z: 0}
-  jumpForwardSpeed: 4
-  freeFallSpeed: 2
+  jumpForwardSpeed: 2
+  freeFallSpeed: 1
 --- !u!114 &5421260381612285749
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,8 +22,6 @@ public class PlayerManager : CharacterManager
         playerStatsManager = GetComponent<PlayerStatsManager>();
     }
 
-
-
     protected override void Update()
     {
         base.Update();
@@ -67,14 +65,15 @@ public class PlayerManager : CharacterManager
             PlayerInputManager.Instance.player = this;
             WorldSavedGameManager.Instance.player = this;
 
-            // LoadGameDataFromCurrentCharacterData(ref WorldSavedGameManager.Instance.currentCharacterData);
+            // UPDATE THE TOTAL AMOUNT OF HEALTH OR STAMINA WHEN THE STAT LINKED TO EITHER CHANGES
+            playerNetworkManager.vitality.OnValueChanged += playerNetworkManager.SetNewMaxHealthValue;
+            playerNetworkManager.endurance.OnValueChanged += playerNetworkManager.SetNewMaxStaminaValue;
 
+            // UPDATE UI STAT BAR WHEN A STAT CHANGES
             playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.Instance.playerUIHudManager.SetNewStaminaValue;
             playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenerationTimer;
-            //THIS WILL BE MOVED WHEN SAVING AND LODING IS ADDED
-            playerNetworkManager.maxStamina.Value = playerStatsManager.CalculateStaminaBasedOnEndurenceLevel(playerNetworkManager.endurance.Value);
-            PlayerUIManager.Instance.playerUIHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
-            playerNetworkManager.currentStamina.Value = playerStatsManager.CalculateStaminaBasedOnEndurenceLevel(playerNetworkManager.endurance.Value);
+            playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.Instance.playerUIHudManager.SetNewHealthValue;
+            // playerNetworkManager.currentHealth.OnValueChanged +=
         }
     }
 
@@ -85,6 +84,12 @@ public class PlayerManager : CharacterManager
         currentCharacterData.xPosition = transform.position.x;
         currentCharacterData.yPosition = transform.position.y;
         currentCharacterData.zPosition = transform.position.z;
+
+        currentCharacterData.vitality = playerNetworkManager.vitality.Value;
+        currentCharacterData.endurance = playerNetworkManager.endurance.Value;
+
+        currentCharacterData.currentHealth = playerNetworkManager.currentHealth.Value;
+        currentCharacterData.currentStamina = playerNetworkManager.currentStamina.Value;
     }
 
     public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
@@ -92,6 +97,17 @@ public class PlayerManager : CharacterManager
         playerNetworkManager.characterName.Value = currentCharacterData.characterName;
         Vector3 myPosition = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
         transform.position = myPosition;
+        // THIS IS CALLED SO THAT CHARACTER LOAD AT EXACT PLACE YOU LEFT OFF 
+        // WITHOUT IT CHARACTER LOAD FAILED (TUTORIAL SOLUTION WAS GLOBALLY ACTIVE PHYSICS SYNC)
         Physics.SyncTransforms();
+
+        playerNetworkManager.vitality.Value = currentCharacterData.vitality;
+        playerNetworkManager.endurance.Value = currentCharacterData.endurance;
+
+        playerNetworkManager.maxHealth.Value = playerStatsManager.CalculateHealthBasedOnVitalityLevel(playerNetworkManager.vitality.Value);
+        playerNetworkManager.maxStamina.Value = playerStatsManager.CalculateStaminaBasedOnEndurenceLevel(playerNetworkManager.endurance.Value);
+        PlayerUIManager.Instance.playerUIHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
+        playerNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
+        playerNetworkManager.currentHealth.Value = currentCharacterData.currentHealth;
     }
 }
