@@ -1022,6 +1022,8 @@ MonoBehaviour:
   sprintingStaminaCost: 10
   dodgeStaminaCost: 20
   jumpStaminaCost: 20
+  jumpHeight: 1
+  jumpDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &5421260381612285749
 MonoBehaviour:
   m_ObjectHideFlags: 0

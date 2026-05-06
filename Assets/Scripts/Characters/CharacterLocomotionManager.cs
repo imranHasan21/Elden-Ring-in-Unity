@@ -6,7 +6,7 @@ public class CharacterLocomotionManager : MonoBehaviour
     CharacterManager character;
 
     [Header("Ground Check & Jumping")]
-    [SerializeField] private float gravityForce = 5.55f;
+    [SerializeField] protected float gravityForce = -5.55f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundCheckSphereRadius = 1;
     [SerializeField] protected Vector3 yVelocity; // THE FORCE AT WHICH OUR CHARACTER IS PULLED UP OR DOWN (JUMPING OR FALLING)

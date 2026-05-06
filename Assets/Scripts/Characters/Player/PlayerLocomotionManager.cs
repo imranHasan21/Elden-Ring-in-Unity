@@ -24,6 +24,10 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     [Header("JUMP")]
     [SerializeField] float jumpStaminaCost = 20;
+    [SerializeField] private float jumpHeight = 4;
+    [SerializeField] private Vector3 jumpDirection;
+    [SerializeField] private float jumpForwardSpeed = 4f;
+    [SerializeField] private float freeFallSpeed = 2f;
 
     protected override void Awake()
     {
@@ -84,6 +88,9 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     {
         // GROUND LEFT RIGHT MOVEMENT
         HandleGroundedMovement();
+
+        HandleJumpingMovement();
+        HandleFreeFallMovement();
 
         // GROUND ROTATION
         HandleRotation();
@@ -185,6 +192,27 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         }
     }
 
+    private void HandleJumpingMovement()
+    {
+        if (player.isJumping)
+        {
+            player.characterController.Move(jumpDirection * jumpForwardSpeed * Time.deltaTime);
+        }
+    }
+
+    private void HandleFreeFallMovement()
+    {
+        if (!player.isGrounded)
+        {
+            Vector3 freeFallDirection;
+            freeFallDirection = PlayerCamera.Instance.transform.forward * PlayerInputManager.Instance.verticalInput;
+            freeFallDirection += PlayerCamera.Instance.transform.right * PlayerInputManager.Instance.horizontalInput;
+            freeFallDirection.y = 0;
+
+            player.characterController.Move(freeFallDirection * freeFallSpeed * Time.deltaTime);
+        }
+    }
+
     public void AttemptToPerformDodge()
     {
         if (player.playerNetworkManager.currentStamina.Value <= 0)
@@ -243,21 +271,41 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         }
 
         // IF WE ARE NOT GROUNDED WE DO NOT WANT TO ALLOW A JUMP
-        if (player.isGrounded)
+        if (!player.isGrounded)
         {
             return;
         }
 
         // IF WE ARE TWO HANDING OUR WEAPON PLAY THE TWO HANDED JUMP ANIMATION, OTHERWISE PLAY THE ONE HANDED ANIMATION
-        player.playerAnimatorManager.PlayTargetActionAnimation("Main_Jump_01", false);
+        player.playerAnimatorManager.PlayTargetActionAnimation("Main_Jump_01", false, false);
 
         player.isJumping = true;
 
         player.characterNetworkManager.currentStamina.Value -= jumpStaminaCost;
+
+        jumpDirection = PlayerCamera.Instance.transform.forward * PlayerInputManager.Instance.verticalInput;
+        jumpDirection += PlayerCamera.Instance.transform.right * PlayerInputManager.Instance.horizontalInput;
+        jumpDirection.y = 0;
+
+        if (jumpDirection != Vector3.zero)
+        {
+            if (player.playerNetworkManager.isSprinting.Value)
+            {
+                jumpDirection *= 1;
+            }
+            else if (PlayerInputManager.Instance.moveAmount > 0.5)
+            {
+                jumpDirection *= 0.5f;
+            }
+            else if (PlayerInputManager.Instance.moveAmount <= 0.5)
+            {
+                jumpDirection *= 0;
+            }
+        }
     }
 
     public void ApplyJumpingVelocity()
     {
-
+        yVelocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityForce);
     }
 }
