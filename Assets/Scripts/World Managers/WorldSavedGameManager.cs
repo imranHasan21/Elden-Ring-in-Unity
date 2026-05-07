@@ -257,6 +257,8 @@ public class WorldSavedGameManager : MonoBehaviour
 
     private void NewGame()
     {
+        player.playerNetworkManager.vitality.Value = 10;
+        player.playerNetworkManager.endurance.Value = 10;
         SaveGame();
         StartCoroutine(LoadWorldScene());
     }

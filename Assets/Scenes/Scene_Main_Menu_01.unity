@@ -457,6 +457,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 2.1889038
       objectReference: {fileID: 0}
+    - target: {fileID: 3189536788984958046, guid: 60bdbce0a028a524b9a6cd74b7892bb2, type: 3}
+      propertyPath: widthScaleMultiplayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3486904774756140248, guid: 60bdbce0a028a524b9a6cd74b7892bb2, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -607,6 +611,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8529867639877441360, guid: 60bdbce0a028a524b9a6cd74b7892bb2, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999720049358309111, guid: 60bdbce0a028a524b9a6cd74b7892bb2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999720049358309111, guid: 60bdbce0a028a524b9a6cd74b7892bb2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999720049358309111, guid: 60bdbce0a028a524b9a6cd74b7892bb2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999720049358309111, guid: 60bdbce0a028a524b9a6cd74b7892bb2, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -849,6 +869,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4377263184706524205, guid: fcda53e9b16ff4a46857896e250c47c9, type: 3}
+      propertyPath: takeDamageEffect
+      value: 
+      objectReference: {fileID: 11400000, guid: 14fd9a862f5b95a4bbbfd51c73b977e1, type: 2}
+    - target: {fileID: 4377263184706524205, guid: fcda53e9b16ff4a46857896e250c47c9, type: 3}
+      propertyPath: instantEffects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377263184706524205, guid: fcda53e9b16ff4a46857896e250c47c9, type: 3}
+      propertyPath: 'instantEffects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 14fd9a862f5b95a4bbbfd51c73b977e1, type: 2}
     - target: {fileID: 6109708232037191690, guid: fcda53e9b16ff4a46857896e250c47c9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

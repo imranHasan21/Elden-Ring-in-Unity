@@ -1,10 +1,12 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WorldCharacterEffectManager : MonoBehaviour
 {
     public static WorldCharacterEffectManager Instance;
+
+    [Header("Damage")]
+    public TakeDamageEffect takeDamageEffect;
 
     [SerializeField] List<InstantCharacterEffect> instantEffects;
 
