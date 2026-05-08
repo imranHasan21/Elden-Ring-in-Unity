@@ -71,7 +71,6 @@ public class SaveFileDataWriter
 
                 // DESERIALIZE THE DATA FROM JSON BACK TO UNITY
                 characterData = JsonUtility.FromJson<CharacterSaveData>(dataToLoad);
-                Debug.Log(characterData.characterName);
 
             }
             catch (Exception ex)
