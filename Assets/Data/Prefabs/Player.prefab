@@ -503,6 +503,7 @@ Transform:
   - {fileID: 3551785918189626353}
   - {fileID: 2264401656011309072}
   - {fileID: 5671323067578796877}
+  - {fileID: 5038623629594515220}
   m_Father: {fileID: 4984950038190168289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2311264520427702855
@@ -750,6 +751,8 @@ GameObject:
   - component: {fileID: 2800241847129808780}
   - component: {fileID: 1391786904926851944}
   - component: {fileID: 9078211311020052078}
+  - component: {fileID: -5787797501042825050}
+  - component: {fileID: 3237250563374040729}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -810,7 +813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
   GlobalObjectIdHash: 3804321140
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 3804321140
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
@@ -879,6 +882,21 @@ MonoBehaviour:
       MaxSecondsBetweenUpdates: 0
     m_InternalValue: 0
   maxStamina:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  vitality:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 1
+  currentHealth:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  maxHealth:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0
@@ -971,16 +989,25 @@ MonoBehaviour:
   characterController: {fileID: 0}
   animator: {fileID: 0}
   characterNetworkManager: {fileID: 0}
+  characterEffectsManager: {fileID: 0}
+  characterAnimatorManager: {fileID: 0}
+  isDead:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
   isPerformingAction: 0
   isJumping: 0
   isGrounded: 0
   applyRootMotion: 0
   canMove: 1
   canRotate: 1
+  respawnCharacter: 0
   playerAnimatorManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
   playerNetworkManager: {fileID: 0}
   playerStatsManager: {fileID: 0}
+  playerInventoryManager: {fileID: 0}
 --- !u!114 &7976164206561163440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,6 +1216,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEfectsManager
   effectToTest: {fileID: 11400000, guid: f726888b04d8b93419b4991aa7abb23c, type: 2}
   processEffect: 0
+--- !u!114 &-5787797501042825050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3882829044547392752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf23c18fb146674797c654e517b132b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventoryManager
+  currentRightHandWeapon: {fileID: 11400000, guid: 709e573f1f34b13418034f42ae72b180, type: 2}
+  currentLeftHandWeapon: {fileID: 11400000, guid: 709e573f1f34b13418034f42ae72b180, type: 2}
+--- !u!114 &3237250563374040729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3882829044547392752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b68dce7e907454e9d94336a12c388a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEquipmentManager
+  rightHandSlot: {fileID: 0}
+  leftHandSlot: {fileID: 0}
+  rightHandWeaponModel: {fileID: 0}
+  leftHandWeaponModel: {fileID: 0}
+--- !u!1 &3902577060816006744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5038623629594515220}
+  - component: {fileID: 7115332477723021554}
+  m_Layer: 6
+  m_Name: Weapon Instantiation Slot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5038623629594515220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902577060816006744}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.9916621, y: 0.08462655, z: 0.044555172, w: 0.08636824}
+  m_LocalPosition: {x: 0.126, y: -0.009, z: 0.047}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 756764623393469131}
+  m_LocalEulerAnglesHint: {x: 9.425, y: 174.008, z: 169.75}
+--- !u!114 &7115332477723021554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902577060816006744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29178a13f8cbc364882669801a54d653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponModelInstantiationSlot
+  weaponSlot: 0
+  currentWeaponModel: {fileID: 0}
 --- !u!1 &4037032957806370819
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,6 +2224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5339586738492593246}
+  - component: {fileID: 3151778996653827157}
   m_Layer: 6
   m_Name: Hand_L
   m_TagString: Untagged
@@ -2146,6 +2250,20 @@ Transform:
   - {fileID: 3650703227948939255}
   m_Father: {fileID: 1443740623096858459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3151778996653827157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7482526428871602146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29178a13f8cbc364882669801a54d653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponModelInstantiationSlot
+  weaponSlot: 1
+  currentWeaponModel: {fileID: 0}
 --- !u!1 &7614740493063531048
 GameObject:
   m_ObjectHideFlags: 0
