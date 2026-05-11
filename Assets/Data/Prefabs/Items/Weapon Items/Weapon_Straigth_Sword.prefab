@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6557039994064810053}
   - component: {fileID: 6920831339153482128}
   - component: {fileID: 8085233462352827300}
+  - component: {fileID: 5581455186039193347}
   m_Layer: 0
   m_Name: Weapon Model
   m_TagString: Untagged
@@ -138,13 +139,30 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 5177448ec4a4be94ab1faeb920c5e49d, type: 3}
+--- !u!114 &5581455186039193347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091962405342538868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 295b9bf6e3ff07d469e8c81d08a00879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  physicalDamage: 0
+  magicDamage: 0
+  fireDamage: 0
+  holyDamage: 0
+  characterCausingDamage: {fileID: 0}
 --- !u!1 &4919630920229788400
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6351493030262320490}
+  - component: {fileID: 7685202321890451636}
   m_Layer: 0
   m_Name: Weapon_Straigth_Sword
   m_TagString: Untagged
@@ -177,3 +196,15 @@ Transform:
   - {fileID: 1475562699880725874}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7685202321890451636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919630920229788400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9909af871dfab4a8f45090eb550b68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'

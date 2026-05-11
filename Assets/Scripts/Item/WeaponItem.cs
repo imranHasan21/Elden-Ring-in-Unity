@@ -16,7 +16,7 @@ public class WeaponItem : Item
     [Header("Weapon Base Damage")]
     public int physicalDamage = 0;
     public int magicDamage = 0;
-    public int fireDamaage = 0;
+    public int fireDamage = 0;
     public int holyDamage = 0;
 
     [Header("Weapon base poise damage")]

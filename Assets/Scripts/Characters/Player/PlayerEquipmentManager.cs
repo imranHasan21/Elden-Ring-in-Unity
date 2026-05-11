@@ -6,6 +6,9 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     public WeaponModelInstantiationSlot rightHandSlot;
     public WeaponModelInstantiationSlot leftHandSlot;
 
+    [SerializeField] WeaponManager rightWeaponManager;
+    [SerializeField] WeaponManager leftWeaponManager;
+
     public GameObject rightHandWeaponModel;
     public GameObject leftHandWeaponModel;
 
@@ -49,13 +52,31 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         LoadRightWeapon();
     }
 
+    public void SwitchRightWeapon()
+    {
+
+    }
+
     public void LoadRightWeapon()
     {
         if (player.playerInventoryManager.currentRightHandWeapon != null)
         {
             rightHandWeaponModel = Instantiate(player.playerInventoryManager.currentRightHandWeapon.weaponModel);
             rightHandSlot.LoadWeapon(rightHandWeaponModel);
+            rightWeaponManager = rightHandWeaponModel.GetComponent<WeaponManager>();
+            rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
+
+            // ASSIGN WEAPON DAMAGE TO ITS COLLIDER
         }
+    }
+
+    public void SwitchLeftWeapon()
+    {
+        if (!player.IsOwner)
+        {
+            return;
+        }
+
     }
 
     public void LoadLeftWeapon()
@@ -64,6 +85,10 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         {
             leftHandWeaponModel = Instantiate(player.playerInventoryManager.currentLeftHandWeapon.weaponModel);
             leftHandSlot.LoadWeapon(leftHandWeaponModel);
+            leftWeaponManager = leftHandWeaponModel.GetComponent<WeaponManager>();
+            leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
+
+            // ASSIGN WEAPON DAMAGE TO ITS COLLIDER
         }
     }
 }
