@@ -22,8 +22,6 @@ public class DamageCollider : MonoBehaviour
     {
         CharacterManager damageTarget = other.GetComponent<CharacterManager>();
 
-        Debug.Log("Name: " + damageTarget.name);
-
         if (damageTarget != null)
         {
             contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);

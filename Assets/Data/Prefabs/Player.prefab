@@ -973,6 +973,16 @@ MonoBehaviour:
         byte0059: 0
         byte0060: 0
         byte0061: 0
+  currentRightHandWeaponID:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
+  currentLeftHandWeaponID:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
 --- !u!114 &7300318623001996234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,11 +1013,13 @@ MonoBehaviour:
   canMove: 1
   canRotate: 1
   respawnCharacter: 0
+  switchRightWeapon: 0
   playerAnimatorManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
   playerNetworkManager: {fileID: 0}
   playerStatsManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
+  playerEquipmentManager: {fileID: 0}
 --- !u!114 &7976164206561163440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1228,8 +1240,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf23c18fb146674797c654e517b132b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventoryManager
-  currentRightHandWeapon: {fileID: 11400000, guid: 709e573f1f34b13418034f42ae72b180, type: 2}
-  currentLeftHandWeapon: {fileID: 11400000, guid: 709e573f1f34b13418034f42ae72b180, type: 2}
+  currentRightHandWeapon: {fileID: 11400000, guid: 435262433720ff5489c19b8fd6d24cb7, type: 2}
+  currentLeftHandWeapon: {fileID: 11400000, guid: 435262433720ff5489c19b8fd6d24cb7, type: 2}
+  weaponsInRightHandSlots:
+  - {fileID: 11400000, guid: 435262433720ff5489c19b8fd6d24cb7, type: 2}
+  - {fileID: 11400000, guid: 435262433720ff5489c19b8fd6d24cb7, type: 2}
+  - {fileID: 11400000, guid: 435262433720ff5489c19b8fd6d24cb7, type: 2}
+  rightHandWeaponIndex: 0
+  weaponsInLeftHandSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  leftHandWeaponIndex: 0
 --- !u!114 &3237250563374040729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,6 +1266,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEquipmentManager
   rightHandSlot: {fileID: 0}
   leftHandSlot: {fileID: 0}
+  rightWeaponManager: {fileID: 0}
+  leftWeaponManager: {fileID: 0}
   rightHandWeaponModel: {fileID: 0}
   leftHandWeaponModel: {fileID: 0}
 --- !u!1 &3902577060816006744

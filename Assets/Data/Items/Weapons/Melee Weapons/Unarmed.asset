@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a1040de50e59304384d943158bd5e5c, type: 3}
+  m_Name: Unarmed
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeWeaponItem
+  itemName: 
+  itemIcon: {fileID: 0}
+  itemID: 2
+  itemDescription: 
+  weaponModel: {fileID: 539865738388388415, guid: 484b9d2fc3128bc4ab1a97f2d54bb4d2, type: 3}
+  strengthREQ: 0
+  dexREQ: 0
+  intREQ: 0
+  faithREQ: 0
+  physicalDamage: 8
+  magicDamage: 0
+  fireDamage: 0
+  holyDamage: 0
+  poiseDamage: 5
+  baseStaminaCost: 5
